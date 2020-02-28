@@ -15,6 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if( timer >= spawnInterval)
         {
+            // Generates a random index to remove from our wave
             int e = Random.Range(0, spawnPos.Length);
             List<GameObject> wave = new List<GameObject>();
             for(int i = 0; i < spawnPos.Length; i++)
@@ -23,10 +24,15 @@ public class AsteroidSpawner : MonoBehaviour
                 asteroid.name = "Asteroid";
                 wave.Add(asteroid);
             }
+            // Gets asteroid that needs to be removed and makes it invisible
             wave[e].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            // Changes the name of gameObject for collision code
             wave[e].name = "Points";
 
+            // resets spawn timer
             timer = 0;
+
+            // Varies the spawn interval between 1.5 seonds and 2 seconds
             spawnInterval = Random.Range(1.5f, 2f);
         }
     }

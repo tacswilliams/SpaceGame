@@ -10,7 +10,7 @@ public class Asteroid : MonoBehaviour
     void Update()
     {
         // Moves asteroid to the left
-        transform.position = new Vector3(transform.position.x - Time.deltaTime * moveSpeed,
+        transform.position = new Vector3(   transform.position.x - Time.deltaTime * moveSpeed,
                                             transform.position.y,
                                             transform.position.z);
 
