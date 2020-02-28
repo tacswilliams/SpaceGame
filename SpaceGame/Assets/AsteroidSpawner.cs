@@ -15,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if( timer >= spawnInterval)
         {
-            int e = Random.Range(0, 3);
+            int e = Random.Range(0, spawnPos.Length);
             List<GameObject> wave = new List<GameObject>();
             for(int i = 0; i < spawnPos.Length; i++)
             {
