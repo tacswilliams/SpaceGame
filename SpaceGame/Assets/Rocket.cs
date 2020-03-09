@@ -20,12 +20,17 @@ public class Rocket : MonoBehaviour
     public int currPosIndex = 1;
     public float t = 0;
     public float moveSpeed = 7;
+
+    public AudioClip hurt;
+    public AudioClip pts;
+    public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         s = GetComponent<SpriteRenderer>();
         health.text = "HP: " + hp;
         points.text = "Score: " + score;
+        source = GetComponent<AudioSource>();
     }
 
     void KillPlayer()
@@ -46,12 +51,15 @@ public class Rocket : MonoBehaviour
                 isAlive = false;
             }
             health.text = "Hp: " + hp;
+            source.PlayOneShot(hurt);
         }
 
        if(col.gameObject.name == "Points" && !isFlinching && isAlive)
         {
             score = score + 1;
             points.text = "Score: " + score;
+            source.PlayOneShot(pts);
+
         }
 
         if (!isAlive)
@@ -75,7 +83,7 @@ public class Rocket : MonoBehaviour
         }
 
         t = Time.deltaTime * moveSpeed;
-        transform.position = Vector3.Lerp(transform.position, rocketPos[currPosIndex], t);
+        transform.position = new Vector3(rocketPos[currPosIndex].x, rocketPos[currPosIndex].y, rocketPos[currPosIndex].z);
 
         if (Input.GetKeyDown(KeyCode.W))
         {
